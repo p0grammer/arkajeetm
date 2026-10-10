@@ -29,18 +29,24 @@ function Hero() {
     <section className="hero" id="top">
       <HeroScene />
       <div className="hero-vignette" />
-      <div className="hero-meta mono"><span><i className="status-dot" /> OPEN TO SELECT PROJECTS</span><span>22°34′ N&nbsp; / &nbsp;88°22′ E</span></div>
-      <div className="hero-copy">
+      <div className="hero-bottom mono"><span className="scroll-cue"><span /> SCROLL TO EXPLORE</span></div>
+    </section>
+  )
+}
+
+function IdentityReveal() {
+  return (
+    <section className="identity-reveal" aria-labelledby="identity-title">
+      <div className="identity-reveal-copy">
         <p className="eyebrow mono"><span className="eyebrow-line" /> INDEPENDENT BUILDER · KOLKATA, INDIA</p>
-        <h1>Arkajeet Mukherjee<span className="name-dot">.</span><br /><span className="hero-title-sub">Systems &amp; Software Developer</span></h1>
-        <p className="hero-description">Bridging digital culture, high-performance software,<br className="desktop-break" /> and the invisible architecture of sound.</p>
+        <h1 id="identity-title">Arkajeet Mukherjee<span className="name-dot">.</span><br /><span>Systems &amp; Software Developer</span></h1>
+        <p className="identity-description">Bridging digital culture, high-performance software, and the invisible architecture of sound.</p>
         <div className="hero-actions">
           <motion.a className="button-primary" href="https://wa.me/919002753627" target="_blank" rel="noreferrer" whileHover={{ y: -3, boxShadow: '0 12px 44px rgba(255,255,255,.12)' }} whileTap={{ scale: 0.97 }} transition={spring}>Chat on WhatsApp <ArrowUpRight size={15} /></motion.a>
           <a className="text-link" href="#work">Explore the work <ArrowDown size={14} /></a>
         </div>
       </div>
-      <div className="hero-bottom mono"><span>ENGINEERING WITH INTENTION</span><span className="scroll-cue"><span /> SCROLL TO EXPLORE</span><span>01 — 04</span></div>
-      <div className="hero-side-note mono">SOFTWARE&nbsp; / &nbsp;SOUND&nbsp; / &nbsp;SPACE</div>
+      <span className="identity-index mono">01 / INDEPENDENT BUILDER</span>
     </section>
   )
 }
@@ -103,7 +109,7 @@ function Contact() {
   return (
     <footer className="contact section-pad" id="contact">
       <div className="section-label mono"><span>04</span><span className="label-rule" /> THE NEXT CHAPTER</div>
-      <div className="contact-main"><p className="eyebrow mono">HAVE A GOOD PROBLEM?</p><h2>Let’s make<br /><span>something matter.</span></h2><div className="contact-actions"><motion.a className="contact-button" href="https://wa.me/919002753627" target="_blank" rel="noreferrer" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} transition={spring}>Chat on WhatsApp <ArrowUpRight size={17} /></motion.a><a className="contact-secondary" href="mailto:mukherjeearkajeet98@gmail.com">Or email me directly</a></div></div>
+      <div className="contact-main"><p className="eyebrow mono">HAVE A GOOD PROBLEM?</p><h2><span className="contact-title-line">Let’s make</span><span className="contact-title-line contact-title-muted">something matter.</span></h2><div className="contact-actions"><motion.a className="contact-button" href="https://wa.me/919002753627" target="_blank" rel="noreferrer" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} transition={spring}>Chat on WhatsApp <ArrowUpRight size={17} /></motion.a><a className="contact-secondary" href="mailto:mukherjeearkajeet98@gmail.com">Or email me directly</a></div></div>
       <address className="contact-details"><a href="tel:+919002753627">+91 9002753627</a><a href="mailto:mukherjeearkajeet98@gmail.com">mukherjeearkajeet98@gmail.com</a><a href="https://github.com/p0grammer" target="_blank" rel="noreferrer">GitHub ↗</a><span>2/28 Adarsha Pally, Kolkata, 700092</span></address>
       <div className="footer-bottom mono"><span>© {new Date().getFullYear()} ARKAJEET MUKHERJEE</span><span><a href="/privacy">PRIVACY</a>&nbsp; / &nbsp;<a href="/terms">TERMS</a></span><a href="#top">BACK TO TOP ↑</a></div>
     </footer>
@@ -116,8 +122,9 @@ export function HomePage() {
   useLayoutEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const ctx = gsap.context(() => {
-      gsap.from('.hero-copy > *', { y: 35, opacity: 0, duration: 1, stagger: 0.13, ease: 'power3.out', delay: 0.2 })
-      gsap.from('.hero-meta, .hero-bottom, .hero-side-note', { opacity: 0, duration: 1, stagger: 0.12, delay: 0.75 })
+      gsap.from('.hero-bottom', { opacity: 0, duration: 1, delay: 0.6 })
+      gsap.fromTo('.identity-reveal-copy', { y: 110, z: -240, rotateX: 16, rotateY: -12, rotationZ: -2, autoAlpha: 0.05 }, { y: 0, z: 0, rotateX: 0, rotateY: 0, rotationZ: 0, autoAlpha: 1, ease: 'none', scrollTrigger: { trigger: '.identity-reveal', start: 'top 88%', end: 'top 24%', scrub: 1 } })
+      gsap.from('.identity-index', { scrollTrigger: { trigger: '.identity-reveal', start: 'top 72%' }, x: 28, opacity: 0, duration: 0.8, ease: 'power2.out' })
       gsap.utils.toArray<HTMLElement>('.section-label').forEach((label) => {
         gsap.fromTo(label, { x: -36, z: -120, rotationY: -32, rotationX: 8, autoAlpha: 0.35 }, { x: 0, z: 0, rotationY: 0, rotationX: 0, autoAlpha: 1, ease: 'none', scrollTrigger: { trigger: label, start: 'top 94%', end: 'top 58%', scrub: 1 } })
       })
@@ -132,12 +139,12 @@ export function HomePage() {
       gsap.to('.manifesto-glow', { scrollTrigger: { trigger: '.manifesto', start: 'top bottom', end: 'bottom top', scrub: 1 }, rotate: 16, scale: 1.18, ease: 'none' })
       gsap.from('.manifesto-content > *', { scrollTrigger: { trigger: '.manifesto-content', start: 'top 72%' }, y: 55, rotateX: -8, transformOrigin: '50% 100%', opacity: 0, duration: 1, stagger: 0.12, ease: 'power3.out' })
       gsap.fromTo('.trajectory-connector span', { scaleX: 0, rotateY: 70, transformOrigin: 'left center' }, { scaleX: 1, rotateY: 0, ease: 'none', stagger: { each: 0.22 }, scrollTrigger: { trigger: '.trajectory-line', start: 'top 84%', end: 'top 43%', scrub: 1 } })
-      gsap.fromTo('.contact-main h2', { y: 120, z: -220, rotateX: 20, rotateY: -10, rotationZ: -3, autoAlpha: 0.25 }, { y: 0, z: 0, rotateX: 0, rotateY: 0, rotationZ: 0, autoAlpha: 1, ease: 'none', scrollTrigger: { trigger: '.contact-main h2', start: 'top 92%', end: 'top 42%', scrub: 1 } })
-      gsap.from('.contact-main .eyebrow, .contact-actions', { scrollTrigger: { trigger: '.contact-main', start: 'top 80%' }, y: 45, z: -90, rotateX: 8, opacity: 0, duration: 0.9, stagger: 0.13, ease: 'power3.out' })
+      gsap.fromTo('.contact-title-line', { y: -42, z: -180, rotateX: 18, rotateY: -7, rotationZ: -2, autoAlpha: 0.12 }, { y: 0, z: 0, rotateX: 0, rotateY: 0, rotationZ: 0, autoAlpha: 1, duration: 1.05, stagger: 0.14, ease: 'power3.out', scrollTrigger: { trigger: '.contact-main', start: 'top 92%', toggleActions: 'play none none none' } })
+      gsap.from('.contact-main .eyebrow, .contact-actions', { scrollTrigger: { trigger: '.contact-main', start: 'top 80%' }, y: 12, z: -90, rotateX: 8, opacity: 0, duration: 0.9, stagger: 0.13, ease: 'power3.out' })
       gsap.from('.footer-bottom > *', { scrollTrigger: { trigger: '.footer-bottom', start: 'top 100%' }, y: 15, opacity: 0, duration: 0.7, stagger: 0.1 })
     }, root)
     return () => ctx.revert()
   }, [])
 
-  return <div className="app-shell" ref={root}><Nav /><main><Hero /><Intro /><WorkGrid /><HubDetails /><Manifesto /><Contact /></main></div>
+  return <div className="app-shell" ref={root}><Nav /><main><Hero /><IdentityReveal /><Intro /><WorkGrid /><HubDetails /><Manifesto /><Contact /></main></div>
 }
