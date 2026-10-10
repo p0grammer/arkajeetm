@@ -88,8 +88,8 @@ export default function HeroScene() {
     <div className="hero-canvas" aria-hidden="true">
       <div className={`scene-loading${ready && !active ? ' is-ready' : ''}`}><span className="loading-indicator" /> LOADING MOON MAP</div>
       <Canvas camera={{ position: [0, 0, 6.8], fov: 38 }} dpr={[1, 1.5]} gl={{ alpha: true, antialias: true }} fallback={<div className="scene-unavailable">3D scene unavailable</div>} onCreated={() => setReady(true)}>
-        <ambientLight intensity={0.32} />
-        <pointLight position={[-4, 3, 4]} intensity={7} color="#fff1d6" />
+        <ambientLight intensity={0.48} />
+        <pointLight position={[-4, 3, 4]} intensity={9} color="#fff1d6" />
         <pointLight position={[4, -2, 2]} intensity={0.8} color="#94a3b8" />
         <Stars radius={60} depth={35} count={1500} factor={2.1} saturation={0} fade speed={0.22} />
         <Suspense fallback={null}><Satellite /></Suspense>
