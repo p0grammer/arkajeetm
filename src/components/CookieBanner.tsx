@@ -15,5 +15,5 @@ export default function CookieBanner() {
   }
 
   if (!visible) return null
-  return <aside className="cookie-banner" aria-label="Cookie and privacy notice"><div><p className="mono">COOKIE &amp; PRIVACY NOTICE</p><p>This portfolio doesn’t use analytics or advertising cookies. It stores your choice to dismiss this notice in this browser. <a href="/privacy">Read the privacy policy</a>.</p></div><button type="button" onClick={dismiss}>Got it</button></aside>
+  return <aside className="cookie-banner" aria-label="Cookie and privacy notice"><div><p className="mono">COOKIE &amp; PRIVACY NOTICE</p><p>This site uses Vercel Analytics for traffic statistics and does not use advertising cookies. It stores your choice to dismiss this notice in this browser. <a href="/privacy">Read the privacy policy</a>.</p></div><button type="button" onClick={dismiss}>Got it</button></aside>
 }
