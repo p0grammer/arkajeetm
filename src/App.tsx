@@ -43,7 +43,7 @@ function IdentityReveal() {
         <p className="identity-description">Bridging digital culture, high-performance software, and the invisible architecture of sound.</p>
         <div className="hero-actions">
           <motion.a className="button-primary" href="https://wa.me/919002753627" target="_blank" rel="noreferrer" whileHover={{ y: -3, boxShadow: '0 12px 44px rgba(255,255,255,.12)' }} whileTap={{ scale: 0.97 }} transition={spring}>Chat on WhatsApp <ArrowUpRight size={15} /></motion.a>
-          <a className="text-link" href="#work">Explore the work <ArrowDown size={14} /></a>
+          <a className="text-link" href="#work">See the practice <ArrowDown size={14} /></a>
         </div>
       </div>
       <span className="identity-index mono">01 / INDEPENDENT BUILDER</span>
